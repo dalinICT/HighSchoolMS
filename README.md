@@ -1,1 +1,2 @@
-# HighSchoolMS
+# HighSchoolMS is school management system
+hello
