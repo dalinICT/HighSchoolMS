@@ -20,7 +20,7 @@ git clone https://github.com/dalinICT/HighSchoolMS.git
     
 ### For Environment Variable Create
  
-    cp .env.example .env
+    copy the (.env.example) and change the name to (.env)
  
     
  ### For Migration table in database [Create database name as ```laravel_jetstream_hsms```]
