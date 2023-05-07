@@ -1,8 +1,7 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-<h1 align="center">Inventory Management System</h1>
+<h1 align="center">HighSchoolMS is school management system</h1>
 <hr>
 
-## HighSchoolMS is school management system
 git clone https://github.com/dalinICT/HighSchoolMS.git
 
     cd HighSchoolMS/
