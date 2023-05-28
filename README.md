@@ -35,4 +35,7 @@ git clone https://github.com/dalinICT/HighSchoolMS.git
 <p align="center">
   <img src="https://contributors-img.web.app/image?repo=dalinICT/HighSchoolMS" />
 </p>
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
