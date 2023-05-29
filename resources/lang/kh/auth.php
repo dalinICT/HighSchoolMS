@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => '用户名和密码不符.',
+    'failed' => 'បរាជ័យ.',
     'password' => '密码不正确.',
     'throttle' => '太多错误尝试，请在以下时间后重试:seconds seconds.',
 
