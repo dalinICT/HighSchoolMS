@@ -12,6 +12,10 @@ git clone https://github.com/dalinICT/HighSchoolMS.git
     
     composer update
     
+### For install laravel/ui on login Form & Register
+
+    composer require laravel/ui  
+    
 ### Npm
 
     npm install && npm run dev
@@ -25,6 +29,7 @@ git clone https://github.com/dalinICT/HighSchoolMS.git
  ### For Migration table in database [Create database name as ```laravel_jetstream_hsms```]
  
     php artisan migrate
+
     
 ### Server ON ```url: http://127.0.0.1:8000/```
 
