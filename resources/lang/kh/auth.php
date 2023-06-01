@@ -14,7 +14,7 @@ return [
     */
 
     'failed' => 'បរាជ័យ.',
-    'password' => '密码不正确.',
+    'password' => 'លេខកូដសម្ងាត់.',
     'throttle' => '太多错误尝试，请在以下时间后重试:seconds seconds.',
 
 ];
