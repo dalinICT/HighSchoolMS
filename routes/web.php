@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('backends.admin.dashboard');
 });
 
+// Route Admin Dashboard
+
+Route::get('/dashboard', function(){
+    return view('backends.admin.dashboard');
+});
 // Route::get('/test', function () {
 //     return view('welcome');
 // });
