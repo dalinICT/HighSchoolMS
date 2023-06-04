@@ -35,45 +35,118 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="{{ url('dashboard') }}" class="nav-link active">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ (Route::is('admin.dashboard')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
-            
+
           </li>
     <!-- user edit -->
+
           <li class="nav-item">
+
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Uers
+                Users
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+
+            @canany('User access','User add','User edit','User delete')
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{route('admin.users.create')}}" class="nav-link {{ (Route::is('admin.users.create')) ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Create</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{ route('admin.users.index')}}" class="nav-link {{ (Route::is('admin.users.index')) ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+              {{-- <li class="nav-item">
+                <a href="{{ route('admin.users.edit')}}" class="nav-link {{ (Route::is('admin.users.edit')) ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Edit</p>
                 </a>
-              </li>
+              </li> --}}
             </ul>
+            @endcanany
           </li>
+
     <!-- end user edit -->
+    <!-- Role page -->
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-chalkboard-teacher"></i>
+          <p>
+            Role
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        @canany('Role access','Role add','Role edit','Role delete')
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{route('admin.roles.create')}}" class="nav-link {{ (Route::is('admin.roles.create')) ? 'active' : '' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Create</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.roles.index') }}" class="nav-link {{ (Route::is('admin.roles.index')) ? 'active' : '' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>View</p>
+            </a>
+          </li>
+          {{-- <li class="nav-item">
+            <a href="pages/charts/flot.html" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Edit</p>
+            </a>
+          </li> --}}
+        </ul>
+        @endcanany
+      </li>
+<!-- end role page -->
+ <!-- Permission page -->
+ <li class="nav-item">
+    <a href="#" class="nav-link">
+      <i class="nav-icon fas fa-chalkboard-teacher"></i>
+      <p>
+        Permission
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+    @canany('Permission access','Permission add','Permission edit','Permission delete')
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+        <a href="{{ route('admin.permissions.index') }}" class="nav-link {{ (Route::is('admin.permissions.index')) ? 'active' : '' }}">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Create</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ route('admin.permissions.index') }}" class="nav-link {{ Route::currentRouteNamed('admin.permissions.index') ? 'active' : '' }}">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View</p>
+        </a>
+      </li>
+      {{-- <li class="nav-item">
+        <a href="pages/charts/flot.html" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Edit</p>
+        </a>
+      </li> --}}
+    </ul>
+    @endcanany
+  </li>
+<!-- end permission page -->
+
     <!-- Teacher page -->
           <li class="nav-item">
             <a href="#" class="nav-link">

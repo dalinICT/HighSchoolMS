@@ -1,4 +1,36 @@
-<!DOCTYPE html>
+@extends('frontends.layouts.master')
+
+@section('front_page')
+
+<section>
+    <div class="full-bot-book">
+        <div class="container">
+            <div class="row">
+                <div class="bot-book">
+                    <div class="col-md-2 bb-img">
+                        <img src="{{asset('frontends/images/3.png')}}" alt="">
+                    </div>
+                    <div class="col-md-7 bb-text">
+                        <h4>Welcome To School Page</h4>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
+                    </div>
+                    <div class="col-md-3 bb-link">
+                        <a href="course-details.html">Book This Course</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@endsection
+
+
+
+
+
+
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -137,4 +169,4 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}
