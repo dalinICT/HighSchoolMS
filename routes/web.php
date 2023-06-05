@@ -59,6 +59,10 @@ Route::get('/admin/dashboard', function () {
     return view('backends.admin.dashboard');
 })->middleware(['auth'])->name('admin.dashboard');
 
+Route::get('/admin/create/teacher', function () {
+    return view('backends.admin.teacher.create_teacher');
+});
+
 require __DIR__.'/auth.php';
 
 
