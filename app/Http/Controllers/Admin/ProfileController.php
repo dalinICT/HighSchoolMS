@@ -44,8 +44,6 @@ class ProfileController extends Controller
             'email' => 'required|email|unique:users,email,'.$user->id.',id',
         ]);
 
-
-
         if($request->password != null){
             $request->validate([
                 'password' => 'required|confirmed'
