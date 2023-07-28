@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\MailSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,14 +61,17 @@ Route::get('/lang/{locale}', function($locale = null){
 
 require __DIR__.'/front_auth.php';
 
-// Admin routes
+//================= Admin routes ===============//
+
+
 Route::get('/admin/dashboard', function () {
     return view('backends.admin.dashboard');
 })->middleware(['auth'])->name('admin.dashboard');
 
-Route::get('/admin/create/teacher', function () {
-    return view('backends.admin.teacher.create_teacher');
-});
+// Route::get('/', function () {
+//     return view('backends.admin.teacher.create_teacher');
+// });
+
 
 require __DIR__.'/auth.php';
 
@@ -91,4 +101,20 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
 
         // Route::get('/mail',[MailSettingController::class,'index'])->name('mail.index');
         // Route::put('/mail-update/{mailsetting}',[MailSettingController::class,'update'])->name('mail.update');
+
+
+
+        // ==========================================================================//
+        //  Create Edit Update Delete Show Teacher Info
+        //===========================================================================//
+        Route::get('/teachers/list', [TeacherController::class, 'index'])->name('teachers.index');
+        Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teachers.create');
+        Route::post('/teachers/store', [TeacherController::class, 'store'])->name('teachers.store');
+
+
+        // ============================================================================//
+        //  End Create Edit Update Delete Show Teacher Info
+        //=============================================================================//
+
+
 });
