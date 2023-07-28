@@ -93,7 +93,7 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+    
     }
 
     /**

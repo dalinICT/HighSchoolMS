@@ -37,8 +37,14 @@
         </div>
       </li>
 
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+
+            <!-- Messages Dropdown Menu -->
+      {{-- <li class="nav-item">
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="{{ route('admin.profile') }}" class="dropdown-item">
             <!-- Message Start -->
@@ -69,12 +75,45 @@
           </form>
           <div class="dropdown-divider"></div>
         </div>
-      </li>
+
+      </li> --}}
 
       <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a href="{{ route('admin.profile') }}" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                      <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                          Profile
+                        </h3>
+                      </div>
+                    </div>
+                    <!-- Message End -->
+                </a>
+                <div class="dropdown-divider"></div>
+                <form method="POST" action="{{ route('admin.logout') }}">
+                    @csrf
+                <a href="{{ route('admin.logout') }}" class="dropdown-item" onclick="event.preventDefault();
+                this.closest('form').submit();">
+                    <!-- Message Start -->
+                    <div class="media">
+                    <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                        Log Out
+                        </h3>
+                    </div>
+                    </div>
+                    <!-- Message End -->
+                </a>
+                </form>
+                <div class="dropdown-divider"></div>
+            </div>
+          </div>
       </li>
 
     </ul>
