@@ -34,9 +34,9 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="POST" id="quickForm" novalidate="novalidate" action="{{ route('admin.users.store')}}">
+              <form method="POST" id="quickForm" novalidate="novalidate" action="{{ route('admin.users.store')}}" enctype="multipart/form-data" >
                 @csrf
-                @method('post')
+                {{-- @method('post') --}}
                 <div class="card-body">
                   <div class="form-group">
                     <label for="InputUserName">User Name</label>
@@ -70,12 +70,23 @@
 
                     </div>
                   </div>
-                  {{-- <div class="form-group mb-0">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                      <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="d-block">Upload User Photo:</label>
+                            <input value="{{ old('profile') }}" accept="image/*" type="file" id="profile" name="profile" class="form-input-styled" data-fouc onchange="previewImage(event)">
+                            <span class="form-text text-muted">Accepted Images: jpeg, png. Max file size 2Mb</span>
+                            {{-- @error('profile')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror --}}
+                        </div>
+                        <div class="form-group">
+
+                            <img id="showImage" src="{{ (!empty($ut->photo)) ? asset('storage/uploads/'.$ut->photo) : asset('storage/uploads/default-photo.png') }}" alt="" srcset="" width="100" height="auto">
+
+                        </div>
                     </div>
-                  </div> --}}
+                </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -98,7 +109,20 @@
     <!-- /.content -->
 </div>
 
+<script type="text/javascript">
+    function previewImage(event) {
+       var input = event.target;
+       var reader = new FileReader();
 
+       reader.onload = function(){
+           var dataURL = reader.result;
+           var image = document.getElementById('showImage');
+           image.src = dataURL;
+       };
+
+       reader.readAsDataURL(input.files[0]);
+   }
+</script>
 
 
 

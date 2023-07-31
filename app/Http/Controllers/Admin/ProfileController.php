@@ -42,23 +42,33 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'name'=>'required',
             'email' => 'required|email|unique:users,email,'.$user->id.',id',
+            'password' => 'nullable|required_with:password_confirmation|confirmed',
+            'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:208',
         ]);
 
-        if($request->password != null){
-            $request->validate([
-                'password' => 'required|confirmed'
-            ]);
+        if($request->filled('password')){
             $validated['password'] = bcrypt($request->password);
+        }else{
+            // To avoid updating with an empty password.
+            unset($validated['password']);
         }
 
         if($request->hasFile('profile')){
-            if($name = $this->saveImage($request->profile)){
-                $validated['profile'] = $name;
-            }
+            // Assuming 'saveImage' method works correctly and returns the filename.
+            $name = $this->saveImage($request->file('profile'));
+            $validated['profile'] = $name;
+
         }
 
         $user->update($validated);
 
-        return redirect()->back()->withSuccess('User updated !!!');
+
+        $notification = array(
+            'message' => 'User Profile Update Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.profile.update')->with($notification);
+
     }
 }
