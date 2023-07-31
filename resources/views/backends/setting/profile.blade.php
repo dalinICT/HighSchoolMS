@@ -35,9 +35,8 @@
 
             <!-- /.card-header -->
             <!-- form start -->
-            <form method="POST" action="{{ route('admin.profile.update')}}" enctype="multipart/form-data">
-                @csrf
-                @method('put')
+            <form enctype="multipart/form-data" method="post"  action="{{ route('admin.profile.update')}}">
+                @csrf @method('put')
               <div class="card-body">
 
                 <div class="form-group flex flex-col space-y-2">

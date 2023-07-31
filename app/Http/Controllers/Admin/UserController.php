@@ -60,12 +60,22 @@ class UserController extends Controller
         $request->validate([
             'name'=>'required',
             'email' => 'required|email|unique:users',
-            'password'=>'required|confirmed'
+            'password'=>'required|confirmed',
+            'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:208',
+
         ]);
+
+        // Get the image file and save into the database
+        $profilePath = null;
+        if($request->hasFile('profile')){
+            $profileFile = $request->file('profile');
+            $profilePath = $profileFile->store('profiles','public');
+        }
         $user = User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=> bcrypt($request->password),
+            'profile' => $profilePath,
         ]);
         $user->syncRoles($request->roles);
 
@@ -113,13 +123,23 @@ class UserController extends Controller
         $validated = $request->validate([
             'name'=>'required',
             'email' => 'required|email|unique:users,email,'.$user->id.',id',
+            'password' => 'nullable|required_with:password_confirmation|confirmed',
+            'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:208',
+
         ]);
 
-        if($request->password != null){
-            $request->validate([
-                'password' => 'required|confirmed'
-            ]);
+        if($request->filled('password')){
             $validated['password'] = bcrypt($request->password);
+        }else{
+            // To avoid updating with an empty password.
+            unset($validated['password']);
+        }
+
+        if($request->hasFile('profile')){
+            // Assuming 'saveImage' method works correctly and returns the filename.
+            $name = $this->saveImage($request->file('profile'));
+            $validated['profile'] = $name;
+
         }
 
         $user->update($validated);
