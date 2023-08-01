@@ -10,7 +10,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('storage/'. Auth::user()->profile) }}" class="img-circle elevation-2" alt="{{ asset(Auth::user()->name) }}">
+          @if(Auth::user()->profile)
+          <img src="{{ asset('storage/'.Auth::user()->profile) }}" class="img-circle elevation-2" alt="{{ asset(Auth::user()->name) }}">
+          @else
+          <img src="{{ asset('storage/default_profile.png') }}" alt="" srcset="" width="100" height="auto">
+          @endifg
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>

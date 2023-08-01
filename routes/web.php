@@ -97,7 +97,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         // Route::resource('posts','PostController');
 
         Route::get('/profile',[App\Http\Controllers\Admin\ProfileController::class,'index'])->name('profile');
-        Route::put('/profile-update',[App\Http\Controllers\Admin\ProfileController::class,'update'])->name('profile.update');
+        Route::post('/profile-update','ProfileController@update')->name('profile.update');
 
         // Route::get('/mail',[MailSettingController::class,'index'])->name('mail.index');
         // Route::put('/mail-update/{mailsetting}',[MailSettingController::class,'update'])->name('mail.update');
