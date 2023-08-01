@@ -108,7 +108,10 @@ class UserController extends Controller
     {
         $role = Role::get();
         $user->roles;
-       return view('backends.setting.user.edit',['user'=>$user,'roles' => $role]);
+
+        // Get the user profile image path from the database and show on webpage.
+        $profileImagePath = asset('storage/' . $user->profile);
+       return view('backends.setting.user.edit',['user'=>$user,'roles' => $role, 'profileImagePath' => $profileImagePath]);
     }
 
     /**

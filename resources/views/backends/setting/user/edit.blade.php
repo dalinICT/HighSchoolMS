@@ -69,8 +69,23 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="d-block">Upload User Photo:</label>
+                            <input value="{{ old('profile') }}" accept="image/*" type="file" id="profile" name="profile" class="form-input-styled" data-fouc onchange="previewImage(event)">
+                            <span class="form-text text-muted">Accepted Images: jpeg, png. Max file size 2Mb</span>
+                            {{-- @error('profile')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror --}}
+                        </div>
+                        <div class="form-group">
+                            @if($user->profile)
 
+                                <img id="showImage" src="{{ $profileImagePath }}" alt="" srcset="" width="100" height="auto">
+                            @else
+                                <img id="showImage" src="{{ asset('storage/no-picture-taking.png') }}" alt="" srcset="" width="100" height="auto">
+                            @endif
+                        </div>
                     </div>
                   </div>
                   {{-- <div class="form-group mb-0">
@@ -101,7 +116,20 @@
     <!-- /.content -->
 </div>
 
+<script type="text/javascript">
+    function previewImage(event) {
+       var input = event.target;
+       var reader = new FileReader();
 
+       reader.onload = function(){
+           var dataURL = reader.result;
+           var image = document.getElementById('showImage');
+           image.src = dataURL;
+       };
+
+       reader.readAsDataURL(input.files[0]);
+   }
+</script>
 
 
 
