@@ -14,7 +14,7 @@
           <img src="{{ asset('storage/'.Auth::user()->profile) }}" class="img-circle elevation-2" alt="{{ asset(Auth::user()->name) }}">
           @else
           <img src="{{ asset('storage/default_profile.png') }}" alt="" srcset="" width="100" height="auto">
-          @endif
+          @endifg
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
