@@ -31,13 +31,16 @@ class ProfileController extends Controller
     public function index()
     {
         $user = auth()->user();
-        return view('backends.setting.profile',['user'=>$user]);
+
+        // Get the user profile image path from the database and show on webpage.
+        $profileImagePath = asset('storage/' . $user->profile);
+        return view('backends.setting.profile',['user'=>$user,'profileImagePath' => $profileImagePath]);
     }
 
 
     public function update(Request $request)
     {
-       
+
     // Get the authenticated user (assuming the user is logged in)
     $user = auth()->user();
 
@@ -63,7 +66,7 @@ class ProfileController extends Controller
         $name = $this->saveImage($request->file('profile'));
         $validated['profile'] = $name;
     }
-   
+
     // Update the user's profile with the validated data
     $user->update($validated);
 
