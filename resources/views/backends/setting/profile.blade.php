@@ -36,7 +36,7 @@
             <!-- /.card-header -->
             <!-- form start -->
             <form enctype="multipart/form-data" method="post"  action="{{ route('admin.profile.update')}}">
-                @csrf 
+                @csrf
               <div class="card-body">
 
                 <div class="form-group flex flex-col space-y-2">
@@ -64,9 +64,12 @@
                             @enderror --}}
                         </div>
                         <div class="form-group">
+                            @if($user->profile)
 
-                            <img id="showImage" src="{{ (!empty($ut->photo)) ? asset('storage/uploads/'.$ut->photo) : asset('storage/uploads/default-photo.png') }}" alt="" srcset="" width="100" height="auto">
-
+                                <img id="showImage" src="{{ $profileImagePath }}" alt="" srcset="" width="100" height="auto">
+                            @else
+                                <img id="showImage" src="{{ asset('storage/no-picture-taking.png') }}" alt="" srcset="" width="100" height="auto">
+                            @endif
                         </div>
                     </div>
                 </div>
