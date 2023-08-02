@@ -80,9 +80,14 @@
 
       <li class="nav-item">
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Profile
-            </button>
+            <a class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">
+                @if(Auth::user()->profile)
+                <img src="{{ asset('storage/'.Auth::user()->profile) }}" class="img-circle elevation-2" alt="{{ asset(Auth::user()->name) }}" width="30" height="auto">
+                @else
+                <img src="{{ asset('storage/default_profile.png') }}" alt="" srcset="" width="30" height="auto">
+                @endif
+            </a>
+
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a href="{{ route('admin.profile') }}" class="dropdown-item">
                     <!-- Message Start -->
