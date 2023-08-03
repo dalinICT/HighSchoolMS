@@ -24,27 +24,13 @@ use App\Http\Controllers\Admin\MailSettingController;
 // Front page route
 Route::get('/', function () {
     return view('welcome');
-});
-
-// Route Admin Dashboard
-
-// Route::get('/dashboard', function(){
-//     return view('welcome');
-// })->middleware(['front'])->name('dashboard');
-// Route::get('/test', function () {
-//     return view('welcome');
-// });
+})->name('front_page');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route to change language from english to khmer and switch back
-// Route::get('/lang/{locale}', function($locale = null){
 
-//     session()->put('locale', $locale);
-//     return redirect()->back();
-// });
 Route::get('/lang/{locale}', function($locale = null){
     if (isset($locale) && in_array($locale, config('app.available_locales'))) {
         app()->setLocale($locale);
@@ -54,23 +40,20 @@ Route::get('/lang/{locale}', function($locale = null){
 });
 
 
-// Route::get('/dashboard', function () {
-//     return view('welcome');
-// })->middleware(['front'])->name('dashboard');
-
-
 require __DIR__.'/front_auth.php';
 
 //================= Admin routes ===============//
 
+Route::middleware(['auth:web,front'])->group(function (){
+    Route::get('/admin/dashboard', function () {
+        return view('backends.admin.dashboard');
+    })->name('admin.dashboard');
+});
 
-Route::get('/admin/dashboard', function () {
-    return view('backends.admin.dashboard');
-})->middleware(['auth'])->name('admin.dashboard');
 
-// Route::get('/', function () {
-//     return view('backends.admin.teacher.create_teacher');
-// });
+
+
+
 
 
 require __DIR__.'/auth.php';

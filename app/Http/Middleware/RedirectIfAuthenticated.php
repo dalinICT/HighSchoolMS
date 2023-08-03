@@ -15,20 +15,31 @@ class RedirectIfAuthenticated
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string ...$guards): Response
-    {
-        $guards = empty($guards) ? [null] : $guards;
+    // public function handle(Request $request, Closure $next, string ...$guards): Response
+    // {
+    //     $guards = empty($guards) ? [null] : $guards;
 
-        foreach ($guards as $guard) {
-            if ($guard == 'front' && Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
+    //     foreach ($guards as $guard) {
+    //         if ($guard == 'front' && Auth::guard($guard)->check()) {
+    //             return redirect(RouteServiceProvider::HOME);
+    //         }
 
-            if (Auth::guard($guard)->check()) {
+    //         if (Auth::guard($guard)->check()) {
+    //             return redirect(RouteServiceProvider::ADMIN_HOME);
+    //         }
+    //     }
+
+    //     return $next($request);
+    // }
+
+    public function handle($request, Closure $next, $guard = null){
+        if(Auth::guard($guard)->check()){
+           if($guard === 'web'){
+                return redirect()->route('admin.dashboard');
+            }else{
                 return redirect(RouteServiceProvider::ADMIN_HOME);
             }
         }
-
         return $next($request);
     }
 }
