@@ -47,8 +47,17 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::guard('front')->login($user);
+        // Assuming 'front' is the guard for frontuser and 'web'
+        // is the guard for the admin user.
+        if(Auth::guard('front')->attempt(['email' => $request->email, 'password' => $request->password])){
+            return redirect()->route('front_page');
+        }elseif(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            // return redirect()->route('admin.dashboard');
+            return redirect()->route('login')->with('error', 'Your register is failed!!!');
+        }
 
-        return redirect(RouteServiceProvider::HOME);
+        // return redirect(RouteServiceProvider::HOME);
+        // If authentication fails for some reason,
+        return redirect()->route('front_page');
     }
 }

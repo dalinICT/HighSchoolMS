@@ -44,4 +44,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    // Relationship to frontusers table
+    public function getAuthIdentifierName()
+    {
+        return 'id';
+    }
+
+    // Use we guard
+    public function getGuardName(): string
+    {
+        return 'web';
+    }
 }

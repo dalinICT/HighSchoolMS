@@ -1,18 +1,18 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    
+
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           @if(Auth::user()->profile)
-          <img src="{{ asset('storage/'.Auth::user()->profile) }}" class="img-circle elevation-2" alt="{{ asset(Auth::user()->name) }}">
+          <img src="{{ asset('storage/'.Auth::user()->profile) }}" class="img-circle elevation-2" alt="{{ Auth::user()->name }}">
           @else
-          <img src="{{ asset('storage/default_profile.png') }}" alt="" srcset="" width="100" height="auto">
+          <img src="{{ asset('storage/no-picture-taking.png') }}" alt="" srcset="" width="100" height="auto">
           @endif
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 

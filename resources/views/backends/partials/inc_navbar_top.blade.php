@@ -84,7 +84,7 @@
                 @if(Auth::user()->profile)
                 <img src="{{ asset('storage/'.Auth::user()->profile) }}" class="img-circle elevation-2" alt="{{ asset(Auth::user()->name) }}" width="30" height="auto">
                 @else
-                <img src="{{ asset('storage/default_profile.png') }}" alt="" srcset="" width="30" height="auto">
+                <img src="{{ asset('storage/no-picture-taking.png') }}" alt="" srcset="" width="30" height="auto">
                 @endif
             </a>
 

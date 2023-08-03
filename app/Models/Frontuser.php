@@ -42,4 +42,11 @@ class Frontuser extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // Relationship to users table
+    public function getAuthIdentifierName()
+    {
+        return 'id';
+    }
 }
